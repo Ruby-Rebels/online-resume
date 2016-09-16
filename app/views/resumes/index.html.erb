@@ -1,0 +1,18 @@
+<div ng-app="app">
+  <div ng-controller="twtCtrl">
+
+    <datalist id="first_name">
+      <option ng-repeat="student in students">{{ student.first_name }}</option>
+    </datalist>
+
+    <button type="button" name="button" ng-click="toggleOrder('name')"> Order by Name </button>
+    <input type="text" placeholder="First Name" ng-model="filterName" list="first_name">
+    <div ng-repeat="student in students| filter: {first_name: filterName} | orderBy:orderAttribute:isReverse">
+    <ul>
+      <h4> <a href= "/resumes/{{ student.id }}"> {{ student.first_name }} {{ student.last_name}}</h4>
+      <a class="twitter-timeline" data-width="500" data-height="200" href="https://twitter.com/{{student.twitter_handle}}">Tweets by {student.twitter_handle}</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </ul>
+
+    </div>
+  </div>
+</div>
